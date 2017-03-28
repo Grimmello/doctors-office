@@ -1,0 +1,13 @@
+<h1>Patient list!</h1>
+
+#if ($patients)
+  <ul>
+    #foreach ($patient in $patients)
+      <li><a href="/patients/$patient.getId()">$patient.getPatientName()</a></li>
+    #end
+  </ul>
+#else
+  <p>No patients!</p>
+#end
+
+<a href="/patients/new">Add New Patient</a>

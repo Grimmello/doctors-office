@@ -1,3 +1,41 @@
-<!--index.vtl-->
+<h1>To Do List</h1>
 
-<!--index.vtl-->
+<h2> All Lists: </h2>
+
+#if($doctors)
+  <p>Click on a doctor to see its patients:</p>
+  <ul>
+    #foreach ($doctor in $doctors)
+      <li><a href="/doctors/$doctor.getId()">$doctor.getDoctorName()</a></li>
+    #end
+  </ul>
+#else
+  <p>There are no doctors yet!</p>
+#end
+
+<h2>New Doctor:</h2>
+
+<form action="/doctors" method="post">
+  <label for="doctorName">Doctor Name</label>
+  <input id="doctorName" name="doctorName" type="text">
+  <button type="submit" class="btn btn-success">Add Doctor</button>
+</form>
+
+<h2>New Patient:</h2>
+
+<form action="/patients" method="post">
+  <label for="doctorId">Select a List</label>
+  <select id='doctorId' name='doctorId' type='text'>
+    #foreach($doctor in $doctors)
+      <option value="$doctor.getId()">$doctor.getDoctorName()</option>
+    #end
+  </select>
+  <div class="form-group">
+    <label for="patientName">Patient Name</label>
+    <input id="patientName" name="patientName" type="text" class="form-control">
+    <label for="patientDOB">Patient DOB</label>
+    <input id="patientDOB" name="patientDOB" type="text" class="form-control">
+  </div>
+
+  <button type="submit" class="btn btn-success">Add Patient</button>
+</form>
